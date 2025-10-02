@@ -2,7 +2,7 @@ class EnergyManagementResult:
     """Armazena os resultados da lógica de gerenciamento de energia."""
     def __init__(
         self,
-        device_status: Dict[str, bool],
+        device_status: dict[str, bool],
         energy_saving_mode: bool,
         temperature_regulation_active: bool,
         total_energy_used: float,

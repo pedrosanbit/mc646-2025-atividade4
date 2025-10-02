@@ -69,3 +69,18 @@ python generate_graph.py -s src/energy/EnergyManagementSystem.py -n energy_cfg
 ```
 
 This will create the rendered image at `cfg/energy_cfg.png` (the script uses `cfg.build_visual(f"cfg/{args.name}", "png")`).
+
+## Generating Coverage Report
+
+You can run the test suite with coverage reporting using `pytest` and the `--cov` plugin (because of the lib `pytest-cov`). For example, to measure coverage for the `SmartEnergyManagementSystem` class (module path `src.energy.EnergyManagementSystem`), run:
+
+```bash
+pytest --cov=src.energy.EnergyManagementSystem --cov-report=html:coverage_report
+```
+
+This command will:
+- Run the tests with pytest
+- Measure coverage for the specified module
+- Generate an HTML coverage report in the `coverage_report/` directory. Feel free to change the name of the output directory by changing the value after `html:`.
+
+You can open `coverage_report/index.html` in your browser to view the detailed coverage report.
