@@ -27,7 +27,6 @@ class FraudDetectionSystem:
         # 2. Verifica por transações excessivas na última hora
         recent_transaction_count = 0
         for transaction in previous_transactions:
-            # REFACTORED BLOCK
             time_difference = current_transaction.timestamp - transaction.timestamp
             time_diff_minutes = time_difference.total_seconds() / 60
             if time_diff_minutes <= 60:
@@ -40,7 +39,6 @@ class FraudDetectionSystem:
         # 3. Verifica mudança de localização em um curto período de tempo
         if previous_transactions:
             last_transaction = previous_transactions[-1]
-            # REFACTORED BLOCK
             time_since_last = current_transaction.timestamp - last_transaction.timestamp
             minutes_since_last = time_since_last.total_seconds() / 60
             
