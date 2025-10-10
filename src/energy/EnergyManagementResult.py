@@ -1,5 +1,4 @@
 class EnergyManagementResult:
-    """Armazena os resultados da lógica de gerenciamento de energia."""
     def __init__(
         self,
         device_status: dict[str, bool],
@@ -13,7 +12,6 @@ class EnergyManagementResult:
         self.total_energy_used = total_energy_used
 
     def __repr__(self) -> str:
-        """Retorna uma representação legível do objeto."""
         return (f"EnergyManagementResult(device_status={self.device_status}, "
                 f"energy_saving_mode={self.energy_saving_mode}, "
                 f"temperature_regulation_active={self.temperature_regulation_active}, "
