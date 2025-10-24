@@ -1,0 +1,39 @@
+<html><body><h1>src/energy/EnergyManagementResult.py</h1>Killed 4 out of 8 mutants<h2>Survived</h2>Survived mutation testing. These mutants show holes in your test suite.<h3>Mutant 5</h3><pre>--- src/energy/EnergyManagementResult.py
++++ src/energy/EnergyManagementResult.py
+@@ -12,7 +12,7 @@
+         self.total_energy_used = total_energy_used
+ 
+     def __repr__(self) -> str:
+-        return (f"EnergyManagementResult(device_status={self.device_status}, "
++        return (f"XXEnergyManagementResult(device_status={self.device_status}, XX"
+                 f"energy_saving_mode={self.energy_saving_mode}, "
+                 f"temperature_regulation_active={self.temperature_regulation_active}, "
+                 f"total_energy_used={self.total_energy_used})")
+</pre><h3>Mutant 6</h3><pre>--- src/energy/EnergyManagementResult.py
++++ src/energy/EnergyManagementResult.py
+@@ -13,6 +13,6 @@
+ 
+     def __repr__(self) -> str:
+         return (f"EnergyManagementResult(device_status={self.device_status}, "
+-                f"energy_saving_mode={self.energy_saving_mode}, "
++                f"XXenergy_saving_mode={self.energy_saving_mode}, XX"
+                 f"temperature_regulation_active={self.temperature_regulation_active}, "
+                 f"total_energy_used={self.total_energy_used})")
+</pre><h3>Mutant 7</h3><pre>--- src/energy/EnergyManagementResult.py
++++ src/energy/EnergyManagementResult.py
+@@ -14,5 +14,5 @@
+     def __repr__(self) -> str:
+         return (f"EnergyManagementResult(device_status={self.device_status}, "
+                 f"energy_saving_mode={self.energy_saving_mode}, "
+-                f"temperature_regulation_active={self.temperature_regulation_active}, "
++                f"XXtemperature_regulation_active={self.temperature_regulation_active}, XX"
+                 f"total_energy_used={self.total_energy_used})")
+</pre><h3>Mutant 8</h3><pre>--- src/energy/EnergyManagementResult.py
++++ src/energy/EnergyManagementResult.py
+@@ -15,4 +15,4 @@
+         return (f"EnergyManagementResult(device_status={self.device_status}, "
+                 f"energy_saving_mode={self.energy_saving_mode}, "
+                 f"temperature_regulation_active={self.temperature_regulation_active}, "
+-                f"total_energy_used={self.total_energy_used})")
++                f"XXtotal_energy_used={self.total_energy_used})XX")
+</pre></body></html>
