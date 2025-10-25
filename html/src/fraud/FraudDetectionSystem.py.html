@@ -1,15 +1,4 @@
-<html><body><h1>src/fraud/FraudDetectionSystem.py</h1>Killed 56 out of 60 mutants<h2>Survived</h2>Survived mutation testing. These mutants show holes in your test suite.<h3>Mutant 73</h3><pre>--- src/fraud/FraudDetectionSystem.py
-+++ src/fraud/FraudDetectionSystem.py
-@@ -13,7 +13,7 @@
-         is_blocked = False
-         verification_required = False
-         risk_score = 0
--        if current_transaction.amount > 10000:
-+        if current_transaction.amount > 10001:
-             is_fraudulent = True
-             verification_required = True
-             risk_score += 50
-</pre><h3>Mutant 78</h3><pre>--- src/fraud/FraudDetectionSystem.py
+<html><body><h1>src/fraud/FraudDetectionSystem.py</h1>Killed 59 out of 60 mutants<h2>Survived</h2>Survived mutation testing. These mutants show holes in your test suite.<h3>Mutant 78</h3><pre>--- src/fraud/FraudDetectionSystem.py
 +++ src/fraud/FraudDetectionSystem.py
 @@ -16,7 +16,7 @@
          if current_transaction.amount > 10000:
@@ -20,26 +9,4 @@
          recent_transaction_count = 0
          for transaction in previous_transactions:
              time_difference = current_transaction.timestamp - transaction.timestamp
-</pre><h3>Mutant 86</h3><pre>--- src/fraud/FraudDetectionSystem.py
-+++ src/fraud/FraudDetectionSystem.py
-@@ -20,7 +20,7 @@
-         recent_transaction_count = 0
-         for transaction in previous_transactions:
-             time_difference = current_transaction.timestamp - transaction.timestamp
--            time_diff_minutes = time_difference.total_seconds() / 60
-+            time_diff_minutes = time_difference.total_seconds() / 61
-             if time_diff_minutes <= 60:
-                 recent_transaction_count += 1
-         
-</pre><h3>Mutant 89</h3><pre>--- src/fraud/FraudDetectionSystem.py
-+++ src/fraud/FraudDetectionSystem.py
-@@ -21,7 +21,7 @@
-         for transaction in previous_transactions:
-             time_difference = current_transaction.timestamp - transaction.timestamp
-             time_diff_minutes = time_difference.total_seconds() / 60
--            if time_diff_minutes <= 60:
-+            if time_diff_minutes <= 61:
-                 recent_transaction_count += 1
-         
-         if recent_transaction_count > 10:
 </pre></body></html>

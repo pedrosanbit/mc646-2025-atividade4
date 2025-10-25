@@ -222,3 +222,34 @@ def test_same_location_no_fraud(system):
     result = system.check_for_fraud(tx, prev, [])
     assert not result.is_fraudulent
     assert result.risk_score == 0
+
+# T20
+def test_amount_10001_triggers_high_value():
+    sysfraud = FraudDetectionSystem()
+    now = datetime(2025,10,12,12)
+    r = sysfraud.check_for_fraud(Transaction(10001, now, "BR"), [], [])
+    assert r.is_fraudulent is True
+    assert r.risk_score >= 50
+    assert r.verification_required is True
+
+# T21
+def test_risk_accumulates_high_value_and_location_change():
+    sysfraud = FraudDetectionSystem()
+    now = datetime(2025,10,12,12)
+    # última transação há 20 min em país diferente -> +20 e verificação
+    history = [Transaction(100, now - timedelta(minutes=20), "US")]
+    r = sysfraud.check_for_fraud(Transaction(15000, now, "BR"), history, [])
+    assert r.is_fraudulent is True
+    assert r.verification_required is True
+    assert r.risk_score == 70   # 50 (valor alto) + 20 (mudança <=30min)
+
+# T22
+def test_61_minutes_transaction_is_not_counted_as_recent():
+    sysfraud = FraudDetectionSystem()
+    now = datetime(2025,10,12,12)
+    # 10 transações dentro de 60 min
+    recent = [Transaction(10, now - timedelta(minutes=i*5), "BR") for i in range(10)]
+    boundary = [Transaction(10, now - timedelta(minutes=61), "BR")]
+    r = sysfraud.check_for_fraud(Transaction(10, now, "BR"), recent + boundary, [])
+    assert r.is_blocked is False
+    assert r.risk_score in (0, 50, 20)

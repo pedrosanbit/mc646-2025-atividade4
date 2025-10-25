@@ -1,15 +1,4 @@
-<html><body><h1>src/flight/FlightBookingSystem.py</h1>Killed 52 out of 55 mutants<h2>Survived</h2>Survived mutation testing. These mutants show holes in your test suite.<h3>Mutant 46</h3><pre>--- src/flight/FlightBookingSystem.py
-+++ src/flight/FlightBookingSystem.py
-@@ -35,7 +35,7 @@
-             final_price *= 0.95
- 
-         if reward_points_available > 0:
--            final_price -= reward_points_available * 0.01
-+            final_price -= reward_points_available * 1.01
-             points_used = True
- 
-         if final_price < 0:
-</pre><h3>Mutant 49</h3><pre>--- src/flight/FlightBookingSystem.py
+<html><body><h1>src/flight/FlightBookingSystem.py</h1>Killed 54 out of 55 mutants<h2>Survived</h2>Survived mutation testing. These mutants show holes in your test suite.<h3>Mutant 49</h3><pre>--- src/flight/FlightBookingSystem.py
 +++ src/flight/FlightBookingSystem.py
 @@ -38,7 +38,7 @@
              final_price -= reward_points_available * 0.01
@@ -17,17 +6,6 @@
  
 -        if final_price < 0:
 +        if final_price <= 0:
-             final_price = 0
- 
-         if is_cancellation:
-</pre><h3>Mutant 50</h3><pre>--- src/flight/FlightBookingSystem.py
-+++ src/flight/FlightBookingSystem.py
-@@ -38,7 +38,7 @@
-             final_price -= reward_points_available * 0.01
-             points_used = True
- 
--        if final_price < 0:
-+        if final_price < 1:
              final_price = 0
  
          if is_cancellation:

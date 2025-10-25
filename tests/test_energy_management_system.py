@@ -164,3 +164,32 @@ def test_T8_scheduled_device(base_setup):
         30, 10, schedule
     )
     assert result.device_status["TV"]
+
+# T9
+def test_energy_result_repr_exact_string():
+    sys = SmartEnergyManagementSystem()
+    r = sys.manage_energy(
+        0.2,                               # peak_rate
+        0.2,                               # offpeak_rate
+        {"Security":1, "Refrigerator":1, "Heating":1, "Cooling":1},  # devices_power
+        datetime(2025, 10, 12, 12, 0, 0),  # now
+        22.0,                              # current_temp
+        (20.0, 24.0),                      # comfort_range
+        30,                                # daily_limit
+        17,                                # total_used_today
+        []                                 # schedules
+    )
+    s = repr(r)
+    assert s.startswith("EnergyManagementResult(")
+    assert "device_status=" in s
+    assert "energy_saving_mode=" in s
+    assert "temperature_regulation_active=" in s
+    assert "total_energy_used=" in s
+
+    expected = (
+        f"EnergyManagementResult(device_status={r.device_status}, "
+        f"energy_saving_mode={r.energy_saving_mode}, "
+        f"temperature_regulation_active={r.temperature_regulation_active}, "
+        f"total_energy_used={r.total_energy_used})"
+    )
+    assert s == expected

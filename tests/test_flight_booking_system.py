@@ -365,3 +365,31 @@ def test_boolean_types_on_failure(system):
     assert result.points_used is False
     assert isinstance(result.confirmation, bool)
     assert isinstance(result.points_used, bool)
+
+# T19
+def _base_price(current_price, previous_sales, passengers):
+    return current_price * (previous_sales/100.0) * 0.8 * passengers
+
+# T20
+def test_one_point_is_one_cent():
+    sysf = FlightBookingSystem()
+    now = datetime(2025,10,12,12); dep = now + timedelta(days=2)
+    r0 = sysf.book_flight(1, now, 10, 200.0, 50, False, dep, 0)
+    r1 = sysf.book_flight(1, now, 10, 200.0, 50, False, dep, 1)
+    assert abs((r0.total_price - r1.total_price) - 0.01) < 1e-6
+
+# T21
+def test_half_real_not_zeroed_by_floor():
+    sysf = FlightBookingSystem()
+    now = datetime(2025,10,12,12); dep = now + timedelta(days=2)
+    r = sysf.book_flight(
+        passengers=1,
+        booking_time=now,
+        available_seats=10,
+        current_price=187.5,
+        previous_sales=1,
+        is_cancellation=False,
+        departure_time=dep,
+        reward_points_available=100
+    )
+    assert 0.49 <= r.total_price <= 0.51
